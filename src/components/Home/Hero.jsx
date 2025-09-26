@@ -1,39 +1,46 @@
+"use client";
+import Image from "next/image";
 import React from "react";
 
 function Hero() {
   return (
-    <div className=" min-h-screen">
-      <div className="hero-content flex-col-reverse lg:flex-row-reverse gap-10">
+    <section className="min-h-screen flex items-center justify-center">
+      <div className="hero-content flex flex-col-reverse lg:flex-row-reverse items-center gap-12 px-6 lg:12">
         {/* Image */}
-        <img
-          src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.webp"
-          alt="E-Store"
-          className="w-full h-100 max-w-sm lg:max-w-md rounded-2xl shadow-xl transform hover:scale-105 transition duration-500"
-        />
+        <div className="flex-shrink-0">
+          <Image
+            alt="Online Shopping"
+            src="/airPorts.webp"
+            width={400}
+            height={400}
+            className="rounded-full  hover:scale-105 transition-transform duration-500"
+            priority
+          />
+        </div>
 
         {/* Text Content */}
-        <div className="text-center lg:text-left">
-          <h1 className="text-4xl md:text-5xl font-extrabold leading-tight text-gray-800">
+        <div className="text-center lg:text-left max-w-xl">
+          <h1 className="text-3xl md:text-4xl xl:text-5xl font-extrabold leading-tight text-gray-900">
             Welcome to <span className="text-[#FF3700]">E-Store</span>
           </h1>
-          <p className="py-6 text-gray-600 max-w-md mx-auto lg:mx-0">
+          <p className="mt-6 text-gray-600 text-base md:text-lg leading-relaxed">
             Discover the best collection of trendy products at unbeatable
             prices. Shop with confidence and enjoy a seamless online shopping
             experience. Fast delivery, secure payments, and top-notch customer
             support.
           </p>
 
-          <div className="flex justify-center lg:justify-start gap-4">
-            <button className="btn bg-[#FF3700] text-white px-6 shadow-md hover:scale-105 transition duration-300">
+          <div className="mt-8 flex flex-wrap justify-center lg:justify-start gap-4">
+            <button className="px-6 py-3 rounded-full bg-[#FF3700] text-white font-semibold shadow-lg hover:bg-[#e53100] hover:scale-105 transition duration-300">
               Shop Now
             </button>
-            <button className="btn btn-outline px-6 shadow-sm hover:scale-105 transition duration-300">
+            <button className="px-6 py-3 rounded-full border border-gray-400 text-gray-800 font-semibold hover:bg-gray-100 hover:scale-105 transition duration-300">
               Learn More
             </button>
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
 
