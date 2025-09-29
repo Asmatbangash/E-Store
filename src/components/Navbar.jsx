@@ -5,11 +5,13 @@ import {
   DisclosurePanel,
 } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import Link from "next/link";
 import { CiShoppingCart } from "react-icons/ci";
+import { usePathname } from "next/navigation"; // ✅ for isActive
 
 const navigation = [
-  { name: "Home", href: "#", current: true },
-  { name: "Store", href: "#", current: false },
+  { name: "Home", href: "/" },
+  { name: "Store", href: "/store" },
 ];
 
 function classNames(...classes) {
@@ -18,6 +20,7 @@ function classNames(...classes) {
 
 export default function Navbar() {
   const cartCount = 11112;
+  const pathname = usePathname(); // ✅ current path
 
   return (
     <Disclosure
@@ -41,12 +44,12 @@ export default function Navbar() {
                   <div className="relative w-full">
                     <input
                       placeholder="Search..."
-                      className="w-full  border border-gray-300 ps-4 pe-8 py-2 rounded-full transition-all focus:outline-none focus:border-indigo-500"
+                      className="w-full border border-gray-300 ps-4 pe-8 py-2 rounded-full transition-all focus:outline-none focus:border-indigo-500"
                       name="search"
                       type="search"
                     />
                     <svg
-                      className="w-6 h-6 absolute top-2.5 right-2  text-gray-500"
+                      className="w-6 h-6 absolute top-2.5 right-2 text-gray-500"
                       stroke="currentColor"
                       strokeWidth="1.5"
                       viewBox="0 0 24 24"
@@ -65,25 +68,28 @@ export default function Navbar() {
 
               {/* Right section: Desktop Nav + Cart */}
               <div className="hidden sm:flex space-x-4 items-center">
-                {navigation.map((item) => (
-                  <a
-                    key={item.name}
-                    href={item.href}
-                    aria-current={item.current ? "page" : undefined}
-                    className={classNames(
-                      item.current
-                        ? "text-[#ff3700] font-semibold"
-                        : "text-black hover:text-[#ff3700]",
-                      "rounded-md px-3 py-2 text-sm"
-                    )}
-                  >
-                    {item.name}
-                  </a>
-                ))}
+                {navigation.map((item) => {
+                  const isActive = pathname === item.href; // ✅ check active
+                  return (
+                    <Link
+                      key={item.name}
+                      href={item.href}
+                      aria-current={isActive ? "page" : undefined}
+                      className={classNames(
+                        isActive
+                          ? "text-[#ff3700] font-semibold border-b-2 border-[#ff3700]"
+                          : "text-black hover:text-[#ff3700]",
+                        "rounded-md px-3 py-2 text-sm transition-colors duration-300"
+                      )}
+                    >
+                      {item.name}
+                    </Link>
+                  );
+                })}
 
                 {/* Cart Button */}
                 <button
-                  className="relative w-14 h-14 rounded-full flex justify-center items-center  transition-all duration-300 ease-out group hover:scale-105 active:scale-95"
+                  className="relative w-14 h-14 rounded-full flex justify-center items-center transition-all duration-300 ease-out group hover:scale-105 active:scale-95"
                   aria-label="Open Shopping Cart"
                 >
                   <CiShoppingCart className="text-3xl text-[#ff3700]" />
@@ -141,30 +147,33 @@ export default function Navbar() {
                 </div>
               </div>
 
-              {navigation.map((item) => (
-                <DisclosureButton
-                  key={item.name}
-                  as="a"
-                  href={item.href}
-                  aria-current={item.current ? "page" : undefined}
-                  className={classNames(
-                    item.current
-                      ? "text-indigo-600 font-semibold"
-                      : "text-gray-700 hover:text-indigo-600",
-                    "block rounded-md px-3 py-2 text-base"
-                  )}
-                >
-                  {item.name}
-                </DisclosureButton>
-              ))}
+              {navigation.map((item) => {
+                const isActive = pathname === item.href; // ✅ for mobile
+                return (
+                  <DisclosureButton
+                    key={item.name}
+                    as="a"
+                    href={item.href}
+                    aria-current={isActive ? "page" : undefined}
+                    className={classNames(
+                      isActive
+                        ? "text-[#ff3700] font-semibold border-l-4 border-[#ff3700] pl-2"
+                        : "text-gray-700 hover:text-[#ff3700]",
+                      "block rounded-md px-3 py-2 text-base transition-colors duration-300"
+                    )}
+                  >
+                    {item.name}
+                  </DisclosureButton>
+                );
+              })}
 
               {/* Mobile Cart Button */}
               <div className="flex justify-start px-3">
                 <button
-                  className="relative w-12 h-12 rounded-full flex justify-center items-center  transition-all duration-300 ease-out group hover:scale-105 active:scale-95"
+                  className="relative w-12 h-12 rounded-full flex justify-center items-center transition-all duration-300 ease-out group hover:scale-105 active:scale-95"
                   aria-label="Open Shopping Cart"
                 >
-                  <CiShoppingCart className="text-2xl text-green-600" />
+                  <CiShoppingCart className="text-2xl text-[#ff3700]" />
                   <div className="absolute -right-2 -top-2 z-10">
                     <div className="relative flex items-center justify-center">
                       <span className="absolute inline-flex h-5 w-5 animate-ping rounded-full bg-red-400 opacity-75"></span>

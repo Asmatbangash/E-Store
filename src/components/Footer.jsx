@@ -3,12 +3,10 @@ import React from "react";
 
 function Footer() {
   return (
-    <footer className="footer footer-horizontal footer-center bg-white shadow-sm text-base-content rounded p-10">
+    <footer className="footer footer-horizontal footer-center bg-white shadow-sm text-base-content rounded p-10 border-t">
       <nav className="grid grid-flow-col gap-4">
-        <a className="link link-hover">About us</a>
-        <a className="link link-hover">Contact</a>
-        <a className="link link-hover">Jobs</a>
-        <a className="link link-hover">Press kit</a>
+        <a className="link link-hover">Home</a>
+        <a className="link link-hover">Store</a>
       </nav>
       <nav>
         <div className="grid grid-flow-col gap-4">
