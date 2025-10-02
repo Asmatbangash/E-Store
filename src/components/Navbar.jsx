@@ -34,10 +34,12 @@ export default function Navbar() {
               {/* Left section: Logo + Search */}
               <div className="flex justify-between items-center space-x-4 flex-1">
                 {/* Logo */}
-                <div className="flex shrink-0 items-center text-2xl font-extrabold">
-                  <h1 className="text-[#ff3700]">E-Store</h1>
-                  <span>.</span>
-                </div>
+                <Link href="/">
+                  <div className="flex shrink-0 items-center text-2xl font-extrabold">
+                    <h1 className="text-[#ff3700]">E-Store</h1>
+                    <span>.</span>{" "}
+                  </div>
+                </Link>
 
                 {/* Search bar (desktop only) */}
                 <div className="hidden sm:flex flex-1 max-w-md mx-4">
