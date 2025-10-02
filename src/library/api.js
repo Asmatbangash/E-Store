@@ -4,8 +4,12 @@ const getCatagories = async () => {
   return data;
 };
 
-const getProducts = async () => {
-  const res = await fetch("https://fakestoreapi.com/products");
+const getProducts = async (product_id = null) => {
+  let API = "https://fakestoreapi.com/products";
+  if (product_id != null) {
+    API += "/" + product_id;
+  }
+  const res = await fetch(API);
   const data = await res.json();
   return data;
 };

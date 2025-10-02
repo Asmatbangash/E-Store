@@ -1,17 +1,20 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 function Card({ products }) {
   return (
     <div className="flex flex-col w-full h-full bg-white border border-gray-200 rounded-2xl shadow-lg dark:bg-gray-800 dark:border-gray-700 overflow-hidden transition-transform hover:scale-105 duration-300">
       <div className="flex-shrink-0">
-        <Image
-          src={products.image}
-          alt={products.title}
-          width={400}
-          height={400}
-          className="w-full h-60 object-contain"
-        />
+        <Link href={"/store/product_detail/" + products.id}>
+          <Image
+            src={products.image}
+            alt={products.title}
+            width={400}
+            height={400}
+            className="w-full h-60 object-contain"
+          />
+        </Link>
       </div>
       <div className="p-5 flex flex-col flex-grow">
         <h5 className="mb-2 text-lg md:text-xl font-semibold text-gray-900 dark:text-white line-clamp-2">
